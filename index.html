@@ -5,19 +5,44 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-    
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      padding: 10px;
+    }
+    .visualization {
+      margin: 20px auto;
+      width: 90%;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   
-<div id="map"></div>
+  <h2>Week 10 (Task 1)</h2>
+  <div id="vis1" class="visualization"></div>
+  
 
-<script type="text/javascript">
+  <h2>week 9 homework (Task 2)</h2>
+  <div id="map" class="visualization"></div>
 
-  var spec2 = "map.vg.json";
-  vegaEmbed('#map', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
+  <script type="text/javascript">
+
+    const spec1 = "w10hw.vg.json";  
+
+
+    const spec2 = "map.vg.json";  
+
+
+    vegaEmbed('#vis1', spec1).then(result => {}).catch(console.error);
+    vegaEmbed('#map', spec2).then(result => {}).catch(console.error);
+
+  </script>
 
 </body>
 </html>
