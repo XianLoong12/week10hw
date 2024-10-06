@@ -1,0 +1,114 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 600,
+    "title": "ABS Values per State",
+    "data": {
+      "url": "https://raw.githubusercontent.com/XianLoong12/w9labhw/main/Filtered_2020_Data.csv"
+    },
+    "params": [
+      {
+        "name": "State_selection",
+        "bind": {
+          "input": "select",
+          "options": [
+            null,
+            "Johor",
+            "Kedah",
+            "Kelantan",
+            "KualaLumpur",
+            "Labuan",
+            "Melaka",
+            "NegeriSembilan",
+            "Pahang",
+            "Perak",
+            "Perlis",
+            "PulauPinang",
+            "Putrajaya",
+            "Sabah",
+            "Sarawak",
+            "Selangor",
+            "Trengganu"
+          ],
+          "labels": [
+            "Show All",
+            "Johor",
+            "Kedah",
+            "Kelantan",
+            "KualaLumpur",
+            "Labuan",
+            "Melaka",
+            "NegeriSembilan",
+            "Pahang",
+            "Perak",
+            "Perlis",
+            "PulauPinang",
+            "Putrajaya",
+            "Sabah",
+            "Sarawak",
+            "Selangor",
+            "Trengganu"
+
+          ],
+          "name": "State Selection: "
+        }
+      }
+    ],
+    "transform": [
+      {
+        "filter": "datum.sex == 'both' && datum.ethnicity == 'overall'"
+      }
+    ],
+    "layer": [
+      {
+        "mark": "bar",
+        "encoding": {
+          "x": {
+            "field": "state",
+            "type": "nominal",
+            "title": "State",
+            "sort": "-y",
+            "axis": {"labelAngle": -45}
+          },
+          "y": {
+            "field": "abs",
+            "type": "quantitative",
+            "title": "ABS Value"
+          },
+          "color": {
+            "condition": {
+              "test": "State_selection === null || datum.state === State_selection", 
+              "value": "steelblue"  
+            },
+            "value": "lightgray"  
+          },
+          "opacity": {
+            "condition": {
+              "test": "State_selection === null || datum.state === State_selection",
+              "value": 1  
+            },
+            "value": 0.5  
+          },
+          "tooltip": [
+            {"field": "state", "type": "nominal", "title": "State"},
+            {"field": "date", "type": "temporal", "title": "Date"},
+            {"field": "abs", "type": "quantitative", "title": "ABS Value"}
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "center",
+          "baseline": "middle",
+          "dy": -10
+        },
+        "encoding": {
+          "text": {"field": "abs", "type": "quantitative"},
+          "x": {"field": "state", "type": "nominal"},
+          "y": {"field": "abs", "type": "quantitative"}
+        }
+      }
+    ]
+  }
+  
